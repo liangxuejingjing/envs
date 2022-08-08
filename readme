@@ -1,20 +1,20 @@
-## 首先，在服务器物理机上配置ubuntu和安装docker工具
+######## 首先，在服务器物理机上配置ubuntu和安装docker工具
 bash setup_ubuntu.sh
 bash install_docker.sh
 
-## 其次，安装深度学习环境
+######## 其次，安装深度学习环境
 修改 wjdl/Dockerfile 文件（主要是根据项目需求选择cuda的版本，可在dockerhub.com中选择pytorch/pytorch库），本次项目所使用的是cuda10.1：
-FROM pytorch/pytorch:1.4-cuda10.1-cudnn7-devel
-LABEL maintainer="wangjinginszu@gmail.com" （这里可以根据自己的邮箱进行设定）
+#FROM pytorch/pytorch:1.4-cuda10.1-cudnn7-devel
+#LABEL maintainer="wangjinginszu@gmail.com" （这里可以根据自己的邮箱进行设定）
 
-## 修改build.sh 文件，主要是修改要生成的image的名字：
-docker build --tag wjdl:cuda10.1 （这里是wjdl）
+######## 修改build.sh 文件，主要是修改要生成的image的名字：
+#docker build --tag wjdl:cuda10.1 （这里是wjdl）
 bash build.sh 构建镜像
 
-## 修改 wjdl/wjdl_start.sh 文件，主要是修改要创建的container的名字端口号，以及是基于哪一个image来创建的:
---name=wjdl_cu101 \
--v /media/data/jing:/studio \
-wjdl:cuda10.1 \
+######## 修改 wjdl/wjdl_start.sh 文件，主要是修改要创建的container的名字端口号，以及是基于哪一个image来创建的:
+#--name=wjdl_cu101 \
+#-v /media/data/jing:/studio \
+#wjdl:cuda10.1 \
 bash wjdl_start.sh 进入 container
 
 service ssh start 开启 ssh 服务
